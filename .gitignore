@@ -1,0 +1,12 @@
+/.gradle/
+.classpath
+.project
+.settings
+
+/bin/
+/build/
+/output/
+/test-output/
+
+/magictest/**/*.act.html
+/magictest/**/*.act.xml

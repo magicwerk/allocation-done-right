@@ -1,0 +1,32 @@
+// Execute 'gradle run' to run org.magicwerk.presentation.garbagefreeallocation.RunGarbageFreeAllocation
+
+plugins {
+    id 'java-library'
+    id 'application'
+    id 'eclipse'
+}
+
+application {
+    mainClass = "org.magicwerk.presentation.garbagefreeallocation.RunGarbageFreeAllocation"
+}
+
+repositories {
+    //mavenCentral()
+	mavenLocal()
+}
+
+dependencies {
+	// - mavenCentral
+	// implementation 'org.magicwerk.brownies:brownies-tools:0.9.15'
+
+	// - mavenLocal
+	implementation 'org.magicwerk.brownies:brownies-tools:0.9.16-SNAPSHOT'
+	
+	implementation 'org.magicwerk.magictest:magictest:0.9.11'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
