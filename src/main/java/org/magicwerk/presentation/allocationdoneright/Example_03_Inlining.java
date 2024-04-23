@@ -14,7 +14,7 @@ import ch.qos.logback.classic.Logger;
 /**
  * Show how JIT handles inlining and the performance impact it has.
  */
-public class ShowInlining {
+public class Example_03_Inlining {
 
 	static final Logger LOG = LogbackTools.getConsoleLogger();
 
@@ -24,18 +24,18 @@ public class ShowInlining {
 	JdkCommands jdkTools = PresentationHelper.createJdkTools(javaVersion);
 	JavaTool javaTool = PresentationHelper.createJavaTool(javaVersion);
 
-	int inliningStep = 2;
+	int inliningStep = 3;
 
 	public static void main(String[] args) {
-		new ShowInlining().run();
+		new Example_03_Inlining().run();
 	}
 
 	void run() {
 		// inliningStep:
-		// 1 = small method - called seldom (not hot)
-		// 2 = small method - called often (hot)
-		// 3 = large method - called often (hot)
-		// 4 = large method split - called often (hot)
+		// 0 = small method - called seldom (not hot)
+		// 1 = small method - called often (hot)
+		// 2 = large method - called often (hot, but too large)
+		// 3 = large method split - called often (hot)
 		runInlining();
 
 		//runJmh();
@@ -81,10 +81,10 @@ public class ShowInlining {
 		//jr.setJvmArgs("-XX:+UnlockDiagnosticVMOptions", "-XX:+PrintInlining");		
 		//jr.setJvmArgs("-XX:+UnlockDiagnosticVMOptions", "-XX:+PrintAssembly");
 
-		//jr.setJvmArgs("-XX:+UnlockDiagnosticVMOptions", "-XX:+PrintCompilation", "-XX:+PrintInlining");
-		jr.setJvmArgs("-XX:+UnlockDiagnosticVMOptions", "-XX:+PrintCompilation", "-XX:+LogCompilation", "-XX:LogFile=hotspot.log");
+		jr.setJvmArgs("-XX:+UnlockDiagnosticVMOptions", "-XX:+PrintCompilation", "-XX:+PrintInlining");
+		//jr.setJvmArgs("-XX:+UnlockDiagnosticVMOptions", "-XX:+PrintCompilation", "-XX:+LogCompilation", "-XX:LogFile=hotspot.log");
 
-		jr.setMainMethod(ShowInlining.class, "doRunInlining");
+		jr.setMainMethod(Example_03_Inlining.class, "doRunInlining");
 		jr.run();
 	}
 

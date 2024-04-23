@@ -1,4 +1,4 @@
-package org.magicwerk.presentation.allocationdoneright;
+package org.magicwerk.presentation.allocationdoneright.misc;
 
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -12,12 +12,13 @@ import org.magicwerk.brownies.core.files.FilePath;
 import org.magicwerk.brownies.core.logback.LogbackTools;
 import org.magicwerk.brownies.core.regex.RegexTools;
 import org.magicwerk.brownies.javassist.JavaVersion;
-import org.magicwerk.brownies.tools.dev.jvm.Blackhole;
+import org.magicwerk.brownies.tools.dev.jvm.BlackHole;
 import org.magicwerk.brownies.tools.dev.jvm.HeapDumpTools;
 import org.magicwerk.brownies.tools.dev.memory.GarbageCollectorMonitoring;
 import org.magicwerk.brownies.tools.dev.memory.MemoryTools;
 import org.magicwerk.brownies.tools.dev.tools.JavaTool;
 import org.magicwerk.brownies.tools.runner.JavaRunner;
+import org.magicwerk.presentation.allocationdoneright.PresentationHelper;
 import org.netbeans.lib.profiler.heap.Heap;
 
 import ch.qos.logback.classic.Logger;
@@ -95,7 +96,7 @@ public class RunHeapDump {
 
 			for (int j = 0; j < 100_000; j++) {
 				Temp temp = new Temp();
-				Blackhole.consume(temp);
+				BlackHole.consume(temp);
 				Live live = new Live();
 				liveList.add(live);
 			}

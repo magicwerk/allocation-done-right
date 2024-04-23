@@ -10,7 +10,7 @@ import org.openjdk.jmh.annotations.State;
 /**
  * Simple new: allocation-free for {@literal >=} Java 8
  */
-public class Example_03_ReturnNew {
+public class Example_13_ReturnNew {
 
 	static class Point {
 		double x;

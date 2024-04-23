@@ -14,7 +14,7 @@ import org.openjdk.jmh.annotations.State;
  * - testBoolean: allocation-free for {@literal >=} Java 8
  * - testInteger: allocation-free for {@literal >=} Java 17
  */
-public class Example_02_Autoboxing {
+public class Example_22_Autoboxing {
 
 	@State(Scope.Benchmark)
 	public static class MyState {

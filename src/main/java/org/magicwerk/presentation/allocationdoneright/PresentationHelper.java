@@ -41,8 +41,8 @@ public class PresentationHelper {
 
 	FilePath file = FilePath.of("output/result.json");
 
-	JavaVersion defaultJavaVersion = JavaVersion.JAVA_21;
-	IList<JavaVersion> allJavaVersions = GapList.create(JavaVersion.JAVA_8, JavaVersion.JAVA_11, JavaVersion.JAVA_17, JavaVersion.JAVA_21);
+	static final JavaVersion defaultJavaVersion = JavaVersion.JAVA_21;
+	static final IList<JavaVersion> allJavaVersions = GapList.create(JavaVersion.JAVA_8, JavaVersion.JAVA_11, JavaVersion.JAVA_17, JavaVersion.JAVA_21);
 
 	JavaTool defaultJavaTool = createJavaTool(defaultJavaVersion);
 	JdkCommands defaultJdkTools = createJdkTools(defaultJavaVersion);
@@ -58,8 +58,6 @@ public class PresentationHelper {
 				createJdkTools(JavaVersion.JAVA_11),
 				createJdkTools(JavaVersion.JAVA_17),
 				createJdkTools(JavaVersion.JAVA_21));
-
-		//allJdkTools = createJdkTools(GapList.create(allJavaVersions), GapList.create(JavaVersion.JAVA_21));
 	}
 
 	IList<JdkCommands> createJdkTools(IList<JavaVersion> javaVersions, IList<JavaVersion> javacVersions) {
@@ -82,7 +80,7 @@ public class PresentationHelper {
 			JavaVersion jcv = FuncTools.map(numJcv, MapMode.DEFAULT, 0, null, 1, CollectionTools.get(javacVersions, 0), CollectionTools.get(javacVersions, i));
 			JdkCommand jtj = createJavaJdkTool(jv);
 			JdkCommand jtjc = createJavacJdkTool(jcv);
-			JdkCommands jt = new JdkCommands().setJavaTool(jtj).setJavacTool(jtjc);
+			JdkCommands jt = new JdkCommands().setJavaCommand(jtj).setJavacCommand(jtjc);
 			jts.add(jt);
 		}
 		return jts;
@@ -121,8 +119,8 @@ public class PresentationHelper {
 	/** Create {@link JdkCommands} where both java and javac use the specified version */
 	public static JdkCommands createJdkTools(JavaVersion jv) {
 		JdkCommands jdkTools = new JdkCommands();
-		jdkTools.setJavaTool(createJavaJdkTool(jv));
-		jdkTools.setJavacTool(createJavacJdkTool(jv));
+		jdkTools.setJavaCommand(createJavaJdkTool(jv));
+		jdkTools.setJavacCommand(createJavacJdkTool(jv));
 		return jdkTools;
 	}
 	//
@@ -188,7 +186,7 @@ public class PresentationHelper {
 	boolean profileGc = true;
 	boolean profileTime;
 	int runTimeMillis = 1000;
-	boolean verboseBuildJavac;
+	boolean verboseBuildJavac = true;
 	boolean force;
 	FilePath outputDir = FilePath.of("output");
 
@@ -227,6 +225,11 @@ public class PresentationHelper {
 		return this;
 	}
 
+	public PresentationHelper setJavaVersions(IList<JavaVersion> javaVersions) {
+		this.jdkEnvs = javaVersions.map(PresentationHelper::createJdkTools);
+		return this;
+	}
+
 	public PresentationHelper setJavaVersions(JavaVersion... javaVersions) {
 		this.jdkEnvs = GapList.create(javaVersions).map(PresentationHelper::createJdkTools);
 		return this;
@@ -237,6 +240,8 @@ public class PresentationHelper {
 	}
 
 	void runBenchmark(Class<?> clazz, String method) {
+		//force = true; // FIXME
+
 		String name = clazz.getName();
 		if (method != null) {
 			name += "." + method;
@@ -308,8 +313,15 @@ public class PresentationHelper {
 				.setCellKeys(GapList.create(JmhReporter.COL_Score))
 				.setValueFormatter(new DecimalFormatter<Number>("#,###"));
 
+		IList<String> colKeys = GapList.create();
+		if (jdkEnvs != null && jdkEnvs.size() > 1) {
+			colKeys.add("java");
+		}
 		if (profileGc) {
-			ptc.setColKeys(GapList.create(JmhReporter.COL_Metric));
+			colKeys.add(JmhReporter.COL_Metric);
+		}
+		if (!colKeys.isEmpty()) {
+			ptc.setColKeys(colKeys);
 		}
 
 		if (factorRow) {

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.magicwerk.presentation.allocationdoneright;
+package org.magicwerk.presentation.allocationdoneright.misc;
 
 import java.util.function.Supplier;
 

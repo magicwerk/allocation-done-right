@@ -56,7 +56,7 @@ public class Example_07_Exception {
 	}
 
 	@Benchmark
-	public int testWithExceptionWithoutStackTracenAsSingleton(MyState state) {
+	public int testWithExceptionWithoutStackTraceAsSingleton(MyState state) {
 		String str = state.supplier.get();
 		try {
 			int num = parseWithExceptionAsSingleton(str);

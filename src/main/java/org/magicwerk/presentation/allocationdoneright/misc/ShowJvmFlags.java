@@ -1,9 +1,10 @@
-package org.magicwerk.presentation.allocationdoneright;
+package org.magicwerk.presentation.allocationdoneright.misc;
 
 import org.magicwerk.brownies.core.logback.LogbackTools;
 import org.magicwerk.brownies.javassist.JavaVersion;
 import org.magicwerk.brownies.tools.dev.tools.JavaTool;
 import org.magicwerk.brownies.tools.runner.JavaRunner;
+import org.magicwerk.presentation.allocationdoneright.PresentationHelper;
 
 import ch.qos.logback.classic.Logger;
 

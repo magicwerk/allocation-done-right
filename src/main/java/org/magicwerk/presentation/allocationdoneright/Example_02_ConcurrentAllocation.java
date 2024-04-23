@@ -19,7 +19,7 @@ import ch.qos.logback.classic.Logger;
  */
 // See for TLAB settings:
 // https://www.baeldung.com/java-jvm-tlab#bd-tuning-tlab-settings
-public class Example_09_ConcurrentAllocation {
+public class Example_02_ConcurrentAllocation {
 
 	static final Logger LOG = LogbackTools.getConsoleLogger();
 

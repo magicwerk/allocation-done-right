@@ -63,11 +63,6 @@ public class Example_04_IterateCollection {
 		return (int) state.coll.stream().filter(n -> n.length() > 1).count();
 	}
 
-	//@Benchmark
-	public int test_Collection_ParallelStream(MyState state) {
-		return (int) state.coll.parallelStream().filter(n -> n.length() > 1).count();
-	}
-
 	@Benchmark
 	public int test_List_Loop(MyState state) {
 		int count = 0;
@@ -109,6 +104,11 @@ public class Example_04_IterateCollection {
 	@Benchmark
 	public int test_List_Stream(MyState state) {
 		return (int) state.list.stream().filter(n -> n.length() > 1).count();
+	}
+
+	//@Benchmark
+	public int test_Collection_ParallelStream(MyState state) {
+		return (int) state.coll.parallelStream().filter(n -> n.length() > 1).count();
 	}
 
 	//@Benchmark

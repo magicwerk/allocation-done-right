@@ -1,5 +1,3 @@
-// Execute 'gradle run' to run org.magicwerk.presentation.garbagefreeallocation.RunGarbageFreeAllocation
-
 plugins {
     id 'java-library'
     id 'application'
@@ -7,22 +5,18 @@ plugins {
 }
 
 application {
-    mainClass = "org.magicwerk.presentation.garbagefreeallocation.RunGarbageFreeAllocation"
+    mainClass = "org.magicwerk.presentation.allocationdoneright.Presentation"
 }
 
 repositories {
-    //mavenCentral()
-	mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
-	// - mavenCentral
-	// implementation 'org.magicwerk.brownies:brownies-tools:0.9.15'
-
-	// - mavenLocal
-	implementation 'org.magicwerk.brownies:brownies-tools:0.9.16-SNAPSHOT'
-	
-	implementation 'org.magicwerk.magictest:magictest:0.9.11'
+	implementation ('org.magicwerk.brownies:brownies-tools:0.9.16') {
+    	exclude group: 'org.magicwerk.ext.org.w3c', module: 'dom'
+	}
+	implementation 'org.magicwerk.magictest:magictest:0.9.12'
 }
 
 java {

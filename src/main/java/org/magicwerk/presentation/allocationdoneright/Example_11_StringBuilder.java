@@ -29,23 +29,28 @@ public class Example_11_StringBuilder {
 	 * Default length of StringBuilder is only 16 characters.
 	 */
 	void run() {
-		testStringBuilderGrow(LEN);
+		int LEN = 1000;
+		testStringBuilderGrow(LEN, 100, 0);
+		testStringBuilderGrow(LEN, 100, 256);
 	}
 
-	void testStringBuilderGrow(int len) {
+	void testStringBuilderGrow(int totalLen, int addLen, int preSize) {
+		String add = StringTools.repeat("x", addLen);
+
 		int oldCapacity = 0;
 		int numGrow = 0;
-		StringBuilder buf = new StringBuilder();
-		for (int i = 0; i < NUM; i++) {
+		int num = totalLen / addLen;
+		StringBuilder buf = (preSize > 0) ? new StringBuilder(preSize) : new StringBuilder();
+		for (int i = 0; i < num; i++) {
 			int capacity = buf.capacity();
 			if (capacity > oldCapacity) {
 				oldCapacity = capacity;
 				numGrow++;
 			}
 			LOG.info("length= {}, capacity= {}", buf.length(), capacity);
-			buf.append(STR);
+			buf.append(add);
 		}
-		LOG.info("numGrow= {}", numGrow);
+		LOG.info("numGrow= {}\n", numGrow);
 	}
 
 	//

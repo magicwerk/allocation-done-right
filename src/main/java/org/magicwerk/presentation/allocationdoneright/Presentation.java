@@ -8,11 +8,12 @@ import org.magicwerk.brownies.tools.dev.jvm.HeapObserver;
 import org.magicwerk.brownies.tools.dev.jvm.JmhRunner;
 import org.magicwerk.brownies.tools.dev.jvm.JmhRunner.Options;
 import org.magicwerk.brownies.tools.dev.memory.MemoryHistoryMonitoring.MemoryReporter;
+import org.magicwerk.presentation.allocationdoneright.misc.Example_07_ExceptionOmitStackTrace;
 
 import ch.qos.logback.classic.Logger;
 
 /**
- * Garbage Free Allocation.
+ * Presentation "Allocation Done Right".
  */
 public class Presentation {
 
@@ -36,6 +37,50 @@ public class Presentation {
 	}
 
 	void runExamples() {
+		// - Benchmark First!
+		//new PresentationHelper().setForce(true).runBenchmark(Example_00_BadBenchmark.class);
+
+		// - (Simple) Java Memory Model
+		//new Example_01_MemoryRegions().runEdenSurvivor();
+		//new Example_01_MemoryRegions().runEdenSurvivorTenured();
+		//new Example_01_MemoryRegions().runHumongousTenured();
+
+		// - A Memory Leak}
+		//new Example_01_MemoryRegions().runLeak();
+
+		// - Memory and Performance
+		//new PresentationHelper().runBenchmark(Example_02_ConcurrentAllocation.class);
+
+		// - Collection and Data Structures
+		//new Example_CollectionSize().run();
+		//new Example_11_StringBuilder().run();
+
+		//new PresentationHelper().runBenchmark(Example_11_StringBuilder.class);
+		//new PresentationHelper().runBenchmark(Example_11_StringBuilder.class);
+
+		//new PresentationHelper().runBenchmark(Example_13_ReturnNew.class);
+
+		//new PresentationHelper().setJavaVersions(PresentationHelper.allJavaVersions).runBenchmark(Example_13_CheckFramework.CheckFrameworkTest.class);
+		new PresentationHelper().setForce(true).runBenchmark(Example_13_CheckFramework.CheckFrameworkTestExample.class);
+
+		//new PresentationHelper().runBenchmark(Example_14_Service.class);
+
+		// JIT exmaples
+		//new PresentationHelper().setJavaVersions(PresentationHelper.allJavaVersions).runBenchmark(Example_22_Autoboxing.class);
+		//new PresentationHelper().setJavaVersions(JavaVersion.JAVA_11, JavaVersion.JAVA_17).runBenchmark(Example_07_Exception.class);
+
+		// === not yet used
+		//new PresentationHelper().setVerboseBuildJavac(true).runBenchmark(Sample_01_EnumValues.class);
+
+		//new PresentationHelper().setVerboseBuildJavac(true).runBenchmark(Example_02_Autoboxing.class);
+		//new PresentationHelper().setVerboseBuildJavac(true).runBenchmark(Example_02_Autoboxing_Bad.class);
+	}
+
+	PresentationHelper newPresentationHelper() {
+		return new PresentationHelper().setForce(true);
+	}
+
+	void runT() {
 		// Show performance only
 		//new PresentationTools().setFastMode(true).setProfileGc(false).runBenchmark(Sample_00_BadBenchmark.class);
 		// Show perfomance with GC
@@ -50,13 +95,6 @@ public class Presentation {
 		//opts.setBenchmarkParameterTemplate("^.*\\.(\\w+{class})_(\\w+{method})"); // FIXME
 
 		// Run samples
-
-		//new PresentationHelper().setForce(true).setVerboseBuildJavac(true).runBenchmark(Sample_00_BadBenchmark.class);
-
-		//new PresentationHelper().setVerboseBuildJavac(true).runBenchmark(Sample_01_EnumValues.class);
-
-		new PresentationHelper().setVerboseBuildJavac(true).runBenchmark(Example_02_Autoboxing.class);
-		//new PresentationHelper().setVerboseBuildJavac(true).runBenchmark(Example_02_Autoboxing_Bad.class);
 
 		//
 

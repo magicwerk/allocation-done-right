@@ -1,4 +1,4 @@
-package org.magicwerk.presentation.allocationdoneright;
+package org.magicwerk.presentation.allocationdoneright.misc;
 
 import java.lang.ref.PhantomReference;
 import java.lang.ref.Reference;
@@ -14,6 +14,7 @@ import org.magicwerk.brownies.core.logback.LogbackTools;
 import org.magicwerk.brownies.javassist.JavaVersion;
 import org.magicwerk.brownies.tools.dev.memory.MemoryTools;
 import org.magicwerk.brownies.tools.runner.JavaRunner;
+import org.magicwerk.presentation.allocationdoneright.PresentationHelper;
 
 import ch.qos.logback.classic.Logger;
 
@@ -34,7 +35,7 @@ public class RunMemoryReferences {
 		//doRun();
 		JavaRunner jr = new JavaRunner();
 		//jr.setJavaTool(JavaTools.createJavaTool(new JavaEnvironment().getSystemJavaVersion()));
-		jr.setJavaTool(PresentationHelper.createJavaTool(JavaVersion.JAVA_8));
+		jr.setJavaTool(PresentationHelper.createJavaTool(JavaVersion.JAVA_11));
 		jr.setJvmArgs("-verbose:gc");
 		jr.setMainMethod(RunMemoryReferences.class, "doRun");
 		jr.run();

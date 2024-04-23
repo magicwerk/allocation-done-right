@@ -1,4 +1,4 @@
-package org.magicwerk.presentation.allocationdoneright;
+package org.magicwerk.presentation.allocationdoneright.misc;
 
 import org.magicwerk.brownies.collections.GapList;
 import org.magicwerk.brownies.collections.IList;

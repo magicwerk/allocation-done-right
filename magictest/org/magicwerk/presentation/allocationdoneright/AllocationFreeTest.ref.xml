@@ -56,8 +56,11 @@
     </traceStep>
   </traceTest>
   <captureTest name="testParseIntAllocationFree">
-    <runDate>2024-04-21T01:37:32.361+02:00</runDate>
-    <runDuration>4.962132799</runDuration>
+    <runDate>2024-04-23T22:04:44.947+02:00</runDate>
+    <runDuration>6.4091725</runDuration>
     <exception></exception>
+    <captureStep>
+      <text outputType="TEXT">"parseInt is allocation free"</text>
+    </captureStep>
   </captureTest>
 </testClass>

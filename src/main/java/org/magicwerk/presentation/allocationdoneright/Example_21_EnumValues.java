@@ -5,13 +5,13 @@ package org.magicwerk.presentation.allocationdoneright;
 
 import java.util.concurrent.TimeUnit;
 
-import org.magicwerk.brownies.tools.dev.jvm.Blackhole;
+import org.magicwerk.brownies.tools.dev.jvm.BlackHole;
 import org.openjdk.jmh.annotations.Benchmark;
 
 /**
  * Show use of Enum.values()
  */
-public class Example_01_EnumValues {
+public class Example_21_EnumValues {
 
 	/** No allocation necessary, array does not escape and is not changed */
 	@Benchmark
@@ -32,7 +32,7 @@ public class Example_01_EnumValues {
 	@Benchmark
 	public int testEnumValues3() {
 		TimeUnit[] values = TimeUnit.values();
-		Blackhole.consume(values);
+		BlackHole.consume(values);
 		return values.length;
 	}
 
