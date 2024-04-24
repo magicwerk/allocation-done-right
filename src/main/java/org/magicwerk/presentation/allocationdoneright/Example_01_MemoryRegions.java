@@ -92,7 +92,7 @@ public class Example_01_MemoryRegions {
 	}
 
 	void run(String method, JavaVersion jv) {
-		JavaTool jt = PresentationHelper.createJavaTool(jv);
+		JavaTool jt = PresentationRunner.createJavaTool(jv);
 		jt.setPrintOutput(true);
 
 		JavaRunner jr = new JavaRunner();

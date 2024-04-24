@@ -51,7 +51,7 @@ public class Example_02_ConcurrentAllocation {
 
 	@Fork(jvmArgs = "-XX:-UseTLAB")
 	@Threads(2)
-	@Benchmark
+	//@Benchmark
 	public Object testThreads2NoTLAB(MyState state) {
 		return new Object();
 	}

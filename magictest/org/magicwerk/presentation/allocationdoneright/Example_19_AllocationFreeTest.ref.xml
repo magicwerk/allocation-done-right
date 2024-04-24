@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="org.magicwerk.presentation.allocationdoneright.Example_19_AllocationFreeTest" xsi:noNamespaceSchemaLocation="testclass-v10.xsd">
+  <traceTest name="testParseInt">
+    <runDate>2024-04-25T00:17:14.639+02:00</runDate>
+    <runDuration>0.0143375</runDuration>
+    <exception></exception>
+    <traceClass>org.magicwerk.presentation.allocationdoneright.Example_19_AllocationFreeTest</traceClass>
+    <traceMethod>parseInt</traceMethod>
+    <traceStep>
+      <description>
+        <paramText outputType="TEXT" param="Description">"parseInt"</paramText>
+      </description>
+      <parameters>
+        <paramText outputType="VALUE" param="#1">"\"1\""</paramText>
+      </parameters>
+      <result>
+        <paramText outputType="VALUE" param="Result">"1"</paramText>
+      </result>
+      <error></error>
+    </traceStep>
+    <traceStep>
+      <description>
+        <paramText outputType="TEXT" param="Description">"parseInt"</paramText>
+      </description>
+      <parameters>
+        <paramText outputType="VALUE" param="#1">"\"12\""</paramText>
+      </parameters>
+      <result>
+        <paramText outputType="VALUE" param="Result">"12"</paramText>
+      </result>
+      <error></error>
+    </traceStep>
+    <traceStep>
+      <description>
+        <paramText outputType="TEXT" param="Description">"parseInt"</paramText>
+      </description>
+      <parameters>
+        <paramText outputType="VALUE" param="#1">"\"x\""</paramText>
+      </parameters>
+      <result>
+        <paramText outputType="VALUE" param="Result">"null"</paramText>
+      </result>
+      <error></error>
+    </traceStep>
+  </traceTest>
+  <captureTest name="testParseIntAllocationFree">
+    <runDate>2024-04-25T00:17:14.728+02:00</runDate>
+    <runDuration>5.4072402</runDuration>
+    <exception></exception>
+    <captureStep>
+      <text outputType="TEXT">"parseInt is allocation free"</text>
+    </captureStep>
+  </captureTest>
+</testClass>
