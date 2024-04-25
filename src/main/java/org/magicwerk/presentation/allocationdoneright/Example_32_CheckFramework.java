@@ -124,9 +124,7 @@ public class Example_32_CheckFramework {
 	public static class CheckFrameworkTestExample extends CheckFrameworkTestBase {
 
 		@Fork(jvmArgs = { "-XX:+UnlockDiagnosticVMOptions", "-XX:+PrintCompilation", "-verbose:gc" })
-		//@Fork(jvmArgs = { "-XX:+UnlockDiagnosticVMOptions", "-XX:+PrintCompilation", "-verbose:gc", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseEpsilonGC" })
 		@Benchmark
-		//public void testCheckMulti(MyState state, JmhAllocationObserverState js) {
 		public void testCheckMulti(MyState state, JmhState js) {
 			String s1 = state.nonEmpty.next();
 			String s2 = state.nonEmpty.next();

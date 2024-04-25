@@ -34,9 +34,10 @@ public class Presentation {
 		//new PresentationRunner().runBenchmark(Example_02_ConcurrentAllocation.class);
 
 		// - Collection and Data Structures
-		//new Example_10_CollectionSize().run();
+		// SKIP: new Example_10_CollectionSize().run();
 		// SKIP: new Example_11_StringBuilder().run();
 		//new PresentationRunner().runBenchmark(Example_11_StringBuilder.class);
+		// SKIP: eval.java21.EvalScopedValue
 
 		// SKIP: Example_12_Inlining
 

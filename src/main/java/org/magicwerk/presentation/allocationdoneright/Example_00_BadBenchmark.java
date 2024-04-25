@@ -21,13 +21,13 @@ public class Example_00_BadBenchmark {
 	}
 
 	@Benchmark
-	public Object testInteger() {
+	public Object testInteger0() {
 		// Returned value 0 is converted to an Integer which can be taken out of the cache maintained by the Integer class
 		return getErrorCode(false);
 	}
 
 	@Benchmark
-	public Object testIntegerLarge() {
+	public Object testInteger1024() {
 		// Returned value 1024 is converted to an Integer which must be allocated
 		return getErrorCode(true);
 	}

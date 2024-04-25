@@ -24,7 +24,7 @@ public class Example_30_StatelessService {
 	//
 
 	@Benchmark
-	public int test_1_StaticCall(MyState state) {
+	public int test_0_StaticCall(MyState state) {
 		return count(state.strings.next(), state.finds.next());
 	}
 
@@ -41,12 +41,12 @@ public class Example_30_StatelessService {
 	//
 
 	@Benchmark
-	public int test_2_InstanceCall(MyState state) {
+	public int test_1_Service(MyState state) {
 		return state.counter1.count(state.strings.next(), state.finds.next());
 	}
 
 	@Benchmark
-	public int test_2_InstanceCall_New(MyState state) {
+	public int test_2_Service_New(MyState state) {
 		return new Counter1().count(state.strings.next(), state.finds.next());
 	}
 
@@ -62,25 +62,31 @@ public class Example_30_StatelessService {
 		}
 	}
 
-	//
+	// Stateful Service
 
 	@Benchmark
-	public int test_2b_InstanceCall_New(MyState state) {
-		Counter5 c = new Counter5();
+	public int test_3_StatefulService(MyState state) {
+		StatefulService c = new StatefulService();
 		c.count(state.strings.next(), state.finds.next());
 		return c.get();
 	}
 
-	static class Counter5 {
+	static class StatefulService {
+		String str;
+		char find;
 		int count;
 
-		void count(String str, char find) {
+		int count(String str, char find) {
+			this.str = str;
+			this.find = find;
+
 			count = 0;
 			for (int i = 0; i < str.length(); i++) {
 				if (str.charAt(i) == find) {
 					count++;
 				}
 			}
+			return count;
 		}
 
 		int get() {
@@ -88,38 +94,44 @@ public class Example_30_StatelessService {
 		}
 	}
 
-	//
+	// Stateless Service
 
 	@Benchmark
-	public int test_3_Counter_Result(MyState state) {
-		return new Counter().getCountResult(state.strings.next(), state.finds.next()).count;
+	public int test_4_StatelessService_Result(MyState state) {
+		return new StatelessServie().getCountResult(state.strings.next(), state.finds.next()).count;
 	}
 
-	static class Counter {
+	static class StatelessServie {
 
 		static class Result {
-			//char find;
+			String str;
+			char find;
 			int count;
 		}
 
 		Result getCountResult(String str, char find) {
 			Result r = new Result();
-			//r.find = find;
-			r.count = count(str, find);
+			r.str = str;
+			r.find = find;
+			process(r);
 			return r;
+		}
+
+		void process(Result r) {
+			r.count = count(r.str, r.find);
 		}
 	}
 
 	//
 
 	@Benchmark
-	public int test_4_Counter_ResultOptions(MyState state) {
-		Counter2.Options opts = new Counter2.Options().setFind(state.finds.next());
-		Counter2 c = new Counter2(opts);
+	public int test_5_StatelessService_ResultOptions(MyState state) {
+		StatelessService2.Options opts = new StatelessService2.Options().setFind(state.finds.next());
+		StatelessService2 c = new StatelessService2(opts);
 		return c.getCountResult(state.strings.next()).count;
 	}
 
-	static class Counter2 {
+	static class StatelessService2 {
 		static class Options {
 			char find;
 
@@ -136,7 +148,7 @@ public class Example_30_StatelessService {
 
 		Options options;
 
-		Counter2(Options options) {
+		StatelessService2(Options options) {
 			this.options = options;
 		}
 

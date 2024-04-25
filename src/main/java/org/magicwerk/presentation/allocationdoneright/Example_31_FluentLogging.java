@@ -221,6 +221,16 @@ public class Example_31_FluentLogging {
 
 	static class FluentLogger extends BaseLogger {
 
+		public Log info() {
+			return (isActive(LogLevel.INFO)) ? new RealLogger(this) : noLogger;
+		}
+
+		public Log debug() {
+			return (isActive(LogLevel.DEBUG)) ? new RealLogger(this) : noLogger;
+		}
+
+		static final NoLogger noLogger = new NoLogger();
+
 		interface Log {
 			void log(String fmt, Object... args);
 
@@ -255,15 +265,6 @@ public class Example_31_FluentLogging {
 			}
 		}
 
-		static final NoLogger noLogger = new NoLogger();
-
-		public Log info() {
-			return (isActive(LogLevel.INFO)) ? new RealLogger(this) : noLogger;
-		}
-
-		public Log debug() {
-			return (isActive(LogLevel.DEBUG)) ? new RealLogger(this) : noLogger;
-		}
 	}
 
 }

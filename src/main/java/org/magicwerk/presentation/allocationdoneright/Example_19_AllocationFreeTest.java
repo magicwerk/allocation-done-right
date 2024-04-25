@@ -43,7 +43,7 @@ public class Example_19_AllocationFreeTest {
 
 		//@Benchmark
 		public int testNotAllocationFree() {
-			BlackHole.consume(new Object()); // bad
+			BlackHole.consume(new MyObject()); // bad
 
 			int sum = 0;
 			sum += parseInt("1");
@@ -53,12 +53,15 @@ public class Example_19_AllocationFreeTest {
 
 		//@Benchmark
 		public int testShowNotAllocationFree(JmhAllocationObserverState state) {
-			BlackHole.consume(new Object()); // bad
+			BlackHole.consume(new MyObject()); // bad
 
 			int sum = 0;
 			sum += parseInt("1");
 			sum += parseInt("12");
 			return sum;
+		}
+
+		static class MyObject {
 		}
 	}
 

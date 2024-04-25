@@ -37,13 +37,7 @@ public class Example_21_VarArgs {
 	}
 
 	@Benchmark
-	public int test(MyState state) {
-		return service.getLength(state.s1, state.s2);
-	}
-
-	// Show that varargs are also allocation free if not constructed from constants but from method calls
-	@Benchmark
-	public int test2(MyState state) {
+	public int testVarargs(MyState state) {
 		return service.getLength(state.map.get(1), state.map.get(2));
 	}
 }

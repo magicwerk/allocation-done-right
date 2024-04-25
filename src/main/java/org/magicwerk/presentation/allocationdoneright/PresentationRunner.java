@@ -213,7 +213,7 @@ public class PresentationRunner {
 		IList<String> lines = TextTools.splitLines(text);
 		for (String line : lines) {
 			LOG.info(line);
-			ThreadTools.sleep(1);
+			ThreadTools.sleep(0); // short wait
 		}
 	}
 

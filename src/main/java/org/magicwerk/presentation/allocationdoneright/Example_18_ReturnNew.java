@@ -28,6 +28,12 @@ public class Example_18_ReturnNew {
 		}
 	}
 
+	@Benchmark
+	public double testScale(MyState state) {
+		Point pt = service.scale(state.getPoint(), 1.1);
+		return pt.x * pt.y;
+	}
+
 	static final Service service = new Service();
 
 	@State(Scope.Benchmark)
@@ -37,12 +43,6 @@ public class Example_18_ReturnNew {
 		Point getPoint() {
 			return new Point(count++, count++);
 		}
-	}
-
-	@Benchmark
-	public double testScale(MyState state) {
-		Point pt = service.scale(state.getPoint(), 1.1);
-		return pt.x * pt.y;
 	}
 
 }
