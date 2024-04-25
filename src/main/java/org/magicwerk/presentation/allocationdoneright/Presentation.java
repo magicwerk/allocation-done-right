@@ -1,17 +1,9 @@
 package org.magicwerk.presentation.allocationdoneright;
 
-import org.magicwerk.brownies.core.logback.LogbackTools;
-
-import ch.qos.logback.classic.Logger;
-
 /**
  * Presentation "Allocation Done Right".
  */
 public class Presentation {
-
-	static final Logger LOG = LogbackTools.getConsoleLogger();
-
-	static final PresentationRunner tools = new PresentationRunner();
 
 	public static void main(String[] args) {
 		new Presentation().run();
